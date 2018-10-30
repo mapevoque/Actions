@@ -13,5 +13,4 @@ class Actions {
 	};
 };
 
-//module.exports = new Actions;
-export default Actions;
+module.exports = new Actions;
