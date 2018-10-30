@@ -4,7 +4,7 @@ exports.config = {
   capabilities: {
     'browserName' : 'chrome'
   },
-  onPrepare: function() {
+  onPrepare: () =>{
     browser.ignoreSynchronization = true;
   },
   specs: ['test.js'],

@@ -1,7 +1,7 @@
 let VuePageObject = require('./VuePageObject');
-describe('actions, expected conditions', function() {
+describe('actions, expected conditions', () => {
 
-  it('edit task', function() {
+  it('edit task', () => {
    VuePageObject.openStartPage();   
    VuePageObject.clickOnSearchField();	
    VuePageObject.inputTextInField();
@@ -12,7 +12,7 @@ describe('actions, expected conditions', function() {
    VuePageObject.clearLocalStorage();
   });
 
-  it('delete a task', function() {
+  it('delete a task', () => {
    VuePageObject.openStartPage();
    VuePageObject.clickOnSearchField();
    VuePageObject.inputTextInField();
@@ -22,7 +22,7 @@ describe('actions, expected conditions', function() {
    VuePageObject.clearLocalStorage();
   });
   
-   it('enter value via js', function() {
+   it('enter value via js', () => {
    VuePageObject.openStartPage();
    VuePageObject.clickViaJs();   
    VuePageObject.enterDataViaJs();

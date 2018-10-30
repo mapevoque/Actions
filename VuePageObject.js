@@ -1,46 +1,50 @@
-let VuePageObject = function() {
+let Actions = require('./actions');
+let ExecuteScript = require('./executeScript');
 
-  elementsFromList = $$('.todo');
-  edit = $$('.edit');  
-  searchField = $('.new-todo');
-  destroy = $$('.destroy');
-  moveTo = $$('body > aside > footer > em > a');
+class VuePageObject {
 
+constructor() {
+        this.elementsFromList = element.all(by.css('.todo'));
+        this.edit = element.all(by.css('.edit'));
+		this.searchField = element(by.css('.new-todo'));
+        this.destroy = element.all(by.css('.destroy'));
+        this.moveTo = element.all(by.css('body > aside > footer > em > a'));
+}
 
-  this.openStartPage = () =>{
+  openStartPage() {
 	 browser.get('http://todomvc.com/examples/vue/');     	 
   };
-  this.clickOnSearchField = () =>{
-	 searchField.click();     	 
+  clickOnSearchField() {
+	 this.searchField.click();     	 
   };
-  this.inputTextInField = () =>{
-	browser.wait(ExpectedConditions.visibilityOf(searchField), 9000).then(() =>{
-		 searchField.sendKeys('test item');  
+  inputTextInField() {
+	browser.wait(ExpectedConditions.visibilityOf(this.searchField), 9000).then(() =>{
+		 this.searchField.sendKeys('test item');  
 	});	
   }; 
-  this.clickOnEnterKey = () =>{
-	 browser.actions().sendKeys(protractor.Key.ENTER).perform();     	 
+  clickOnEnterKey() {
+     Actions.sendKeys(protractor.Key.ENTER);	 
   };
-  this.doubleClick = () =>{
-	 browser.actions().doubleClick((elementsFromList).get(0)).perform();     	 
+  doubleClick() {
+    Actions.doubleClick(this.elementsFromList);	 
   };
-  this.editElementAndInputText = () =>{
-	 edit.get(0).sendKeys(' - edited');     	 
+  editElementAndInputText() {
+	 this.edit.get(0).sendKeys(' - edited');     	 
   };
-  this.clearLocalStorage = () =>{
-	 browser.executeScript('window.localStorage.clear();');     	 
+  clearLocalStorage() {
+     ExecuteScript.clearLocalStorage();	 
   };
-  this.mouseMove = () =>{
-	 browser.actions().mouseMove((elementsFromList).get(0)).perform();    	 
+  mouseMove() {
+   Actions.mouseMove(this.elementsFromList);	
   };
-  this.clickOnDestroy = () =>{
-	 browser.actions().click((destroy).get(0)).perform();    	 
+  clickOnDestroy() {
+  Actions.click(this.destroy);	 
   };
-  this.enterDataViaJs = () =>{
-     browser.executeScript("document.querySelector('.new-todo').value = 'MAXIM';");   	 
+  enterDataViaJs() {
+  ExecuteScript.executeScript("document.querySelector('.new-todo').value = 'MAXIM';");
   };
-   this.clickViaJs = () =>{
-     browser.executeScript("document.querySelector('.new-todo').click();");   	 
+  clickViaJs() {
+  ExecuteScript.executeScript("document.querySelector('.new-todo').click();");   	 
   };
 };
 module.exports = new VuePageObject();
